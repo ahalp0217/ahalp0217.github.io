@@ -10,6 +10,9 @@ body {
   .ui.header>.image+.content, .ui.header>img+.content {
     padding-left: 0px !important;
   }
+  body {
+    width: 90%;
+  }
 }
 
 p {
