@@ -5,6 +5,11 @@ body {
   margin-top: 5%;
 }
 
+@media (max-width: 767px) { 
+  .ui.header>.image+.content, .ui.header>img+.content {
+    padding-left: 0px !important;
+  }
+}
 .video-container iframe {
     position: absolute;
     top:0;
