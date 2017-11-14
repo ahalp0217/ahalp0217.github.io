@@ -10,6 +10,11 @@ body {
     padding-left: 0px !important;
   }
 }
+
+p {
+  font-size: 16px;
+}
+
 .video-container iframe {
     position: absolute;
     top:0;
