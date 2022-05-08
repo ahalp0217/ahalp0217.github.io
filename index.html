@@ -138,6 +138,22 @@
       <div class="pizza">Made with 🍕</div>
    </body>
    <style>
+      
+      body {
+          animation: fadeInAnimation ease .7s;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+      }
+  
+      @keyframes fadeInAnimation {
+          0% {
+              opacity: 0;
+          }
+          100% {
+              opacity: 1;
+           }
+      }
+
       h1, h2, h3, h4, h5 {
       font-family: 'IBM Plex Sans', sans-serif;
       }
@@ -196,6 +212,7 @@
       }
       .mii {
       width: 75px;
+      height: 75px;
       border-radius: 75px;
       }
       .logo {
