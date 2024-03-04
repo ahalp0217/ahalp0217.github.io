@@ -211,6 +211,8 @@ section img {
 section iframe {
   margin-top: 6rem;
   margin-bottom: 6rem;
+  aspect-ratio: 16/9;
+  height: 100%;
 }
 
 section {
