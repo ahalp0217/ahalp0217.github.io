@@ -130,6 +130,10 @@ html {
 
 }
 
+main {
+  max-width: 950px !important;
+}
+
 .mii {
   width: 100px;
   border-radius: 1000px;
