@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,462 +10,415 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ahalp0217.github.io/">
   <meta property="og:description" content="Andy's Blazingly Fast Website">
-  <meta property="og:image" content="image.png">
+  <meta property="og:image" content="https://ahalp0217.github.io/profile.png">
   <link rel="icon" href="/favicon.ico">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset and base styles */
+    :root {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --text: #1c1917;
+      --muted: #57534e;
+      --subtle: #78716c;
+      --line: #e7e5e4;
+      --accent: #0369a1;
+      --accent-soft: #e0f2fe;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161514;
+        --surface: #1f1d1b;
+        --text: #f5f5f4;
+        --muted: #c4c0bc;
+        --subtle: #a8a29e;
+        --line: #2f2c29;
+        --accent: #7dd3fc;
+        --accent-soft: #0c2a3d;
+      }
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
+
     html {
       scroll-behavior: smooth;
     }
-    
+
     body {
-      font-family: 'Rubik', sans-serif;
-      color: #1e293b;
-      background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
-      line-height: 1.5;
+      font-family: 'Rubik', system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
-    
+
     img {
+      display: block;
       max-width: 100%;
-      height: auto;
     }
-    
+
     a {
+      color: var(--accent);
       text-decoration: none;
-      color: inherit;
     }
-    
-    /* Layout */
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     .container {
-      max-width: 1024px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 2rem 1rem;
+      padding: 4rem 1.25rem 2rem;
     }
-    
-    /* Hero section */
+
+    /* Header */
     .hero {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      margin-bottom: 4rem;
-      padding-top: 2rem;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
     }
-    
-    .profile-image {
-      width: 10rem;
-      height: 10rem;
+
+    .hero img {
+      width: 4.5rem;
+      height: 4.5rem;
       border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-      position: relative;
-      box-shadow: 0 0 0 4px #e2e8f0;
-    }
-    
-    .profile-image img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
+      flex-shrink: 0;
     }
-    
+
     .hero h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 0.5rem;
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
     }
-    
-    .hero h2 {
-      font-size: 1.25rem;
-      color: #475569;
-      margin-bottom: 0.25rem;
-    }
-    
+
     .hero p {
-      color: #64748b;
-      margin-bottom: 1.5rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
     }
-    
-    /* Navigation */
+
+    .hero .edu {
+      color: var(--subtle);
+      font-size: 0.9375rem;
+    }
+
     .nav {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: 1.5rem;
+      padding-bottom: 1.25rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.9375rem;
+      font-weight: 500;
     }
-    
-    .nav-link {
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      background-color: #e2e8f0;
-      color: #334155;
-      transition: background-color 0.2s;
+
+    .nav a {
+      color: var(--muted);
     }
-    
-    .nav-link:hover {
-      background-color: #cbd5e1;
+
+    .nav a:hover {
+      color: var(--text);
     }
-    
-    /* Section headers */
-    .section-header {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    
-    /* Project cards */
+
+    /* Sections */
     .section {
       margin-bottom: 4rem;
+      scroll-margin-top: 2rem;
     }
-    
-    .project-card {
-      margin-bottom: 3rem;
-      background-color: white;
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      transition: box-shadow 0.2s;
+
+    .section-header {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--subtle);
+      margin-bottom: 1.5rem;
     }
-    
-    .project-card:hover {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Projects */
+    .project {
+      padding: 2rem 0;
+      border-top: 1px solid var(--line);
     }
-    
-    .project-card h3 {
+
+    .project:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .project h3 {
       font-size: 1.25rem;
       font-weight: 600;
-      color: #1e293b;
-      margin-bottom: 0.75rem;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
     }
-    
-    .project-card p {
-      color: #475569;
-      margin-bottom: 0.75rem;
+
+    .project p {
+      color: var(--muted);
+      max-width: 65ch;
     }
-    
-    .project-card .secondary-text {
-      color: #64748b;
-      margin-bottom: 1rem;
+
+    .project .meta {
       font-size: 0.875rem;
+      color: var(--subtle);
+      margin-top: 0.25rem;
     }
-    
+
     .project-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
-      color: #334155;
-      background-color: #f1f5f9;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      margin-bottom: 1.5rem;
-      transition: background-color 0.2s;
-    }
-    
-    .project-link:hover {
-      background-color: #e2e8f0;
-    }
-    
-    .project-link svg {
-      width: 1rem;
-      height: 1rem;
-    }
-    
-    /* Media grid */
-    .media-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .media-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    .media-grid img {
-      border-radius: 0.5rem;
-      width: 100%;
-      height: auto;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
     }
 
-    .media-grid-img {
-      border-radius: 0.5rem;
+    .project-link svg {
+      width: 0.875rem;
+      height: 0.875rem;
     }
-    
-    /* Video container */
-    .video-container {
+
+    /* Media: compact thumbnails that sit under the description */
+    .media {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .media a {
+      display: block;
+    }
+
+    .media img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      transition: opacity 0.15s;
+    }
+
+    .media a:hover img {
+      opacity: 0.85;
+    }
+
+    .video {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
+      max-width: 480px;
+      aspect-ratio: 16 / 9;
+      margin-top: 1.25rem;
       border-radius: 0.5rem;
+      overflow: hidden;
+      background: var(--line);
     }
-    
-    .video-container iframe {
+
+    .video iframe {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: 0;
     }
-    
-    /* Review box */
-    .review-box {
-      background-color: #f1f5f9;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #e2e8f0;
+
+    /* Review */
+    .review {
+      margin-top: 1.25rem;
+      padding: 0.25rem 0 0.25rem 1rem;
+      border-left: 3px solid var(--line);
+      font-size: 0.9375rem;
+      color: var(--muted);
+      max-width: 65ch;
     }
-    
-    .review-box h4 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+
+    .review cite {
+      display: block;
+      font-style: normal;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.25rem;
     }
-    
-    .review-box p {
-      color: #475569;
+
+    .review p {
       font-style: italic;
     }
-    
+
     /* Footer */
     .footer {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 0;
-      border-top: 1px solid #e2e8f0;
-    }
-    
-    .back-to-top {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      color: #475569;
-      margin-bottom: 1rem;
-      transition: color 0.2s;
-    }
-    
-    .back-to-top:hover {
-      color: #1e293b;
-    }
-    
-    .back-to-top svg {
-      width: 1rem;
-      height: 1rem;
-    }
-    
-    .footer p {
-      color: #64748b;
-      margin-bottom: 1rem;
-    }
-    
-    .social-links {
-      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.9375rem;
+      color: var(--subtle);
     }
-    
-    .social-link {
+
+    .footer nav {
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #475569;
-      transition: color 0.2s;
+      gap: 1.25rem;
     }
-    
-    .social-link:hover {
-      color: #1e293b;
-    }
-    
-    .social-link svg {
-      width: 1.125rem;
-      height: 1.125rem;
+
+    @media (max-width: 520px) {
+      .container {
+        padding-top: 2.5rem;
+      }
+
+      .media {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .video {
+        max-width: none;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="profile-image">
-        <img src="https://ahalp0217.github.io/profile.png" alt="Andrew Halpern">
+  <main class="container" id="top">
+    <header class="hero">
+      <img src="./profile.png" alt="Andrew Halpern">
+      <div>
+        <h1>Andrew Halpern</h1>
+        <p>Design Technologist @ Prime Video</p>
+        <p class="edu">Information Science &amp; Game Design · Cornell University 2016</p>
       </div>
-      
-      <h1>Andrew Halpern</h1>
-      <h2>Design Technologist @ Prime Video</h2>
-      <p>Information Science & Game Design - Cornell University 2016</p>
-      
-      <nav class="nav">
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#sideprojects" class="nav-link">Side Projects</a>
-        <a href="#chess" class="nav-link">Chess</a>
-      </nav>
-    </section>
-    
-    <!-- Experience Section -->
+    </header>
+
+    <nav class="nav">
+      <a href="#experience">Experience</a>
+      <a href="#sideprojects">Side Projects</a>
+      <a href="#chess">Chess</a>
+      <a href="https://www.linkedin.com/in/ahalp0217/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </nav>
+
+    <!-- Experience -->
     <section id="experience" class="section">
       <h2 class="section-header">Experience</h2>
-      
-      <div class="project-card">
+
+      <article class="project">
         <h3>🧙 Prime Video</h3>
-        <p>I currently a lead a team of design technologists building high-fidelity UI prototypes for the Prime Video TV, Mobile, and Web applications. I also prototyped and developed interactive maps, character cards, timelines, and shopping experiences for dozens of Prime Video titles including Wheel of Time, Making The Cut, and The Rings of Power. </p>
-        <a href="https://www.aboutamazon.com/news/entertainment/prime-video-updated-steaming-experience" target="_blank" class="project-link">
-          <span>View Project</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
+        <p>I currently lead a team of design technologists building high-fidelity UI prototypes for the Prime Video TV, Mobile, and Web applications. I also prototyped and developed interactive maps, character cards, timelines, and shopping experiences for dozens of Prime Video titles including Wheel of Time, Making The Cut, and The Rings of Power.</p>
+        <a href="https://www.aboutamazon.com/news/entertainment/prime-video-updated-steaming-experience" target="_blank" rel="noopener" class="project-link">
+          View project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
 
-        
-        <img src="./ringsofpower.jpg" class="media-grid-img" alt="Rings of Power TV Page" />
-  
-        
-        <div class="media-grid">
-          <img src="https://i.imgur.com/DXGp6os.png" alt="Wheel of Time Explore Page" />
-          <img src="https://i.imgur.com/x2kRgym.png" alt="The Boys Explore Page" />
+        <div class="media">
+          <a href="./ringsofpower.jpg" target="_blank"><img src="./ringsofpower.jpg" alt="Rings of Power TV page" loading="lazy"></a>
+          <a href="https://i.imgur.com/DXGp6os.png" target="_blank"><img src="https://i.imgur.com/DXGp6os.png" alt="Wheel of Time Explore page" loading="lazy"></a>
+          <a href="https://i.imgur.com/x2kRgym.png" target="_blank"><img src="https://i.imgur.com/x2kRgym.png" alt="The Boys Explore page" loading="lazy"></a>
         </div>
-        
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/ot7e7ArfhRs" title="A technologist shares how his role with Prime Video allows him to create innovative experiences" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/ot7e7ArfhRs" title="A technologist shares how his role with Prime Video allows him to create innovative experiences" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-      </div>
-      
-      <div class="project-card">
-        <h3>🐈 Paws vs Pawns (Unity)</h3>
+      </article>
+
+      <article class="project">
+        <h3>🐈 Paws vs Pawns</h3>
         <p>Carefully navigating beneath towering enemy chess pieces, you'll play as Purrrnie the orange cat as you learn to solve unique chess puzzles that test your memory, patience, and your fear of heights.</p>
-        <p class="secondary-text">UCLA Extension Game Design Project</p>
-        <a href="https://64a64fc484d2733dcaf1ac0e--tubular-pie-fc6a07.netlify.app/" target="_blank" class="project-link">
-          <span>Play Game</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
+        <p class="meta">Unity · UCLA Extension Game Design Project</p>
+        <a href="https://64a64fc484d2733dcaf1ac0e--tubular-pie-fc6a07.netlify.app/" target="_blank" rel="noopener" class="project-link">
+          Play game
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
-        
-        <img src="./pawspawns.jpg" alt="Paws vs Pawns logo">
-      </div>
-      
-      <div class="project-card">
-        <h3>Quiz Me❗</h3>
-        <p>Quiz Me! was a 1st party voice-forward trivia skill powered by Alexa's own Knowledge Graph. Players could test their knowledge across thousands of dynamically generated and engaging categories. Featured at the 2019 Game Developers Conference.</p>
-        
-        <div class="review-box">
-          <h4>⭐ Five Star Reviewer ⭐</h4>
-          <p>"I really like this game. We plan it on long drives-- so traffic doesn't bother us as much. I love movie trivia and there are lots of variations in this game-- as well as a lot of other types of categories. I only wish there was a list of the available categories somewhere. I figured out that I can say: "Quiz me on movies from the 1930's" (or 40's, 50's, etc. or you can ask to be quizzed on movies from specific directors or specific actors. In a couple of instances the skill had some issues: a few times it read the questions in Spanish instead of english and sometimes it says it does not have a category that I know it has because I've played it already. But the problems are not often."</p>
-        </div>
-        
-        <img src="https://i.imgur.com/skwSalL.png" alt="Quiz Me logo">
-      </div>
-      
-      <div class="project-card">
-        <h3>📙 The Dictionary Game</h3>
-        <p>The Dictionary Game, the popular parlor game, can now be played online with friends! Trick your friends into guessing for your made-up definition to an obscure word and see if you can spot the correct definition among the crowd. Players can use their phones, tablets or laptops to play together in real-time. At least 2 players are required to play, but the more players join the harder and crazier it becomes to get your friends to vote for your definition. Entrant in the 2018 International Game Festival.</p>
-        
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/8q2OCrgh48s" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br/>
 
-        <a href="https://dictionarygame.vercel.app/" target="_blank" class="project-link">
-          <span>Play Game</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
+        <div class="media">
+          <a href="./pawspawns.jpg" target="_blank"><img src="./pawspawns.jpg" alt="Paws vs Pawns logo" loading="lazy"></a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>❗ Quiz Me!</h3>
+        <p>Quiz Me! was a 1st party voice-forward trivia skill powered by Alexa's own Knowledge Graph. Players could test their knowledge across thousands of dynamically generated and engaging categories.</p>
+        <p class="meta">Alexa Skill · Featured at the 2019 Game Developers Conference</p>
+
+        <div class="media">
+          <a href="https://i.imgur.com/skwSalL.png" target="_blank"><img src="https://i.imgur.com/skwSalL.png" alt="Quiz Me logo" loading="lazy"></a>
+        </div>
+
+        <blockquote class="review">
+          <cite>⭐⭐⭐⭐⭐ Five-star review</cite>
+          <p>"I really like this game. We play it on long drives — so traffic doesn't bother us as much. I love movie trivia and there are lots of variations in this game — as well as a lot of other types of categories. I only wish there was a list of the available categories somewhere. I figured out that I can say: 'Quiz me on movies from the 1930's' (or 40's, 50's, etc.) or you can ask to be quizzed on movies from specific directors or specific actors. In a couple of instances the skill had some issues: a few times it read the questions in Spanish instead of English and sometimes it says it does not have a category that I know it has because I've played it already. But the problems are not often."</p>
+        </blockquote>
+      </article>
+
+      <article class="project">
+        <h3>📙 The Dictionary Game</h3>
+        <p>The popular parlor game, now playable online with friends! Trick your friends into guessing your made-up definition of an obscure word, and see if you can spot the correct definition among the crowd. Players use their phones, tablets, or laptops to play together in real time. At least 2 players are required, but the more players join, the harder and crazier it becomes to get your friends to vote for your definition.</p>
+        <p class="meta">Entrant in the 2018 International Game Festival</p>
+        <a href="https://dictionarygame.vercel.app/" target="_blank" rel="noopener" class="project-link">
+          Play game
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
-      </div>
+
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/8q2OCrgh48s" title="The Dictionary Game trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </article>
     </section>
-    
-    <!-- Side Projects Section -->
+
+    <!-- Side Projects -->
     <section id="sideprojects" class="section">
       <h2 class="section-header">Side Projects</h2>
-      
-      <div class="project-card">
+
+      <article class="project">
         <h3>🧵 Jackie Halpern Quilts</h3>
         <p>I built this website and CMS for my mom to upload her favorite quilts and cats!</p>
-        <a href="https://distracted-bassi-8ee167.netlify.app/" target="_blank" class="project-link">
-          <span>View Website</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
+        <a href="https://distracted-bassi-8ee167.netlify.app/" target="_blank" rel="noopener" class="project-link">
+          View website
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
-      </div>
-      
-      <div class="project-card">
+      </article>
+
+      <article class="project">
         <h3>🟦 Squares</h3>
         <p>Click as fast as you can!</p>
-        <a href="https://ecstatic-jepsen-c4bf8e.netlify.app/" target="_blank" class="project-link">
-          <span>Play Game</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
+        <a href="https://ecstatic-jepsen-c4bf8e.netlify.app/" target="_blank" rel="noopener" class="project-link">
+          Play game
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
-      </div>
+      </article>
     </section>
-    
-    <!-- Chess Section -->
+
+    <!-- Chess -->
     <section id="chess" class="section">
       <h2 class="section-header">Chess</h2>
-      
-      <div class="project-card">
-        <h3>♟️ Atomic Andy (Me) vs GM Hikaru Nakamura</h3>
-        <p>Who will win!? Spoiler, it's not me.</p>
-        
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/RBC2AIFXFH8" title="Hikaru Invokes The Wrath of The Great Carlini" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+      <article class="project">
+        <h3>♟️ Atomic Andy (me) vs GM Hikaru Nakamura</h3>
+        <p>Who will win!? Spoiler: it's not me.</p>
+
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/RBC2AIFXFH8" title="Hikaru Invokes The Wrath of The Great Carlini" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-      </div>
+      </article>
     </section>
-    
-    <!-- Footer -->
+
     <footer class="footer">
-      <a href="#" class="back-to-top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-        <span>Back to Top</span>
-      </a>
-      
-      <p>Made with 🍕</p>
-      
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/ahalp0217/" target="_blank" class="social-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            <rect x="2" y="9" width="4" height="12"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
-          </svg>
-          <span>LinkedIn</span>
-        </a>
-      </div>
+      <span>Made with 🍕</span>
+      <nav>
+        <a href="https://www.linkedin.com/in/ahalp0217/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#top">Back to top ↑</a>
+      </nav>
     </footer>
   </main>
 </body>
