@@ -166,7 +166,7 @@
       font-size: 1.25rem;
       font-weight: 600;
       line-height: 1.3;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     .project p {
@@ -194,21 +194,25 @@
       height: 0.875rem;
     }
 
-    /* Media: compact thumbnails that sit under the description */
+    /* Media sits directly under the title, description follows */
     .media {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
-      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
     }
 
     .media a {
       display: block;
     }
 
+    .media .lead {
+      grid-column: 1 / -1;
+    }
+
     .media img {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 0.5rem;
       border: 1px solid var(--line);
@@ -216,15 +220,18 @@
       transition: opacity 0.15s;
     }
 
+    .media img.photo {
+      aspect-ratio: 16 / 10;
+    }
+
     .media a:hover img {
-      opacity: 0.85;
+      opacity: 0.88;
     }
 
     .video {
       position: relative;
-      max-width: 480px;
       aspect-ratio: 16 / 9;
-      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
       border-radius: 0.5rem;
       overflow: hidden;
       background: var(--line);
@@ -308,23 +315,29 @@
     /* Review */
     .review {
       margin-top: 1.25rem;
-      padding: 0.25rem 0 0.25rem 1rem;
+      padding-left: 1rem;
       border-left: 3px solid var(--line);
-      font-size: 0.9375rem;
-      color: var(--muted);
       max-width: 65ch;
+    }
+
+    .review p {
+      font-size: 1.0625rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .review strong {
+      font-weight: 600;
+      font-style: normal;
+      color: var(--text);
     }
 
     .review cite {
       display: block;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
       font-style: normal;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-    }
-
-    .review p {
-      font-style: italic;
+      color: var(--subtle);
     }
 
     /* Footer */
@@ -347,14 +360,6 @@
     @media (max-width: 520px) {
       .container {
         padding-top: 2.5rem;
-      }
-
-      .media {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .video {
-        max-width: none;
       }
     }
   </style>
@@ -383,14 +388,9 @@
 
       <article class="project">
         <h3>🧙 Prime Video</h3>
-        <p>I currently lead a team of design technologists building high-fidelity UI prototypes for the Prime Video TV, Mobile, and Web applications. I also prototyped and developed interactive maps, character cards, timelines, and shopping experiences for dozens of Prime Video titles including Wheel of Time, Making The Cut, and The Rings of Power.</p>
-        <a href="https://www.aboutamazon.com/news/entertainment/prime-video-updated-steaming-experience" target="_blank" rel="noopener" class="project-link">
-          View project
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
 
         <div class="media">
-          <a href="../ringsofpower.jpg" target="_blank"><img src="../ringsofpower.jpg" alt="Rings of Power TV page" loading="lazy"></a>
+          <a class="lead" href="../ringsofpower.jpg" target="_blank"><img src="../ringsofpower.jpg" alt="Rings of Power TV page" loading="lazy"></a>
           <a href="../wheel-of-time.webp" target="_blank"><img src="../wheel-of-time.webp" alt="Wheel of Time Explore page" loading="lazy"></a>
           <a href="../the-boys.webp" target="_blank"><img src="../the-boys.webp" alt="The Boys Explore page" loading="lazy"></a>
         </div>
@@ -398,49 +398,58 @@
         <div class="video">
           <iframe src="https://www.youtube.com/embed/ot7e7ArfhRs" title="A technologist shares how his role with Prime Video allows him to create innovative experiences" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+
+        <p>I currently lead a team of design technologists building high-fidelity UI prototypes for the Prime Video TV, Mobile, and Web applications. I also prototyped and developed interactive maps, character cards, timelines, and shopping experiences for dozens of Prime Video titles including Wheel of Time, Making The Cut, and The Rings of Power.</p>
+        <a href="https://www.aboutamazon.com/news/entertainment/prime-video-updated-steaming-experience" target="_blank" rel="noopener" class="project-link">
+          View project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
       </article>
 
       <article class="project">
         <h3>🐈 Paws vs Pawns</h3>
+
+        <div class="media">
+          <a class="lead" href="../pawspawns.jpg" target="_blank"><img class="photo" src="../pawspawns.jpg" alt="Paws vs Pawns title art" loading="lazy"></a>
+        </div>
+
         <p>Carefully navigating beneath towering enemy chess pieces, you'll play as Purrrnie the orange cat as you learn to solve unique chess puzzles that test your memory, patience, and your fear of heights.</p>
         <p class="meta">Unity · UCLA Extension Game Design Project</p>
         <a href="https://64a64fc484d2733dcaf1ac0e--tubular-pie-fc6a07.netlify.app/" target="_blank" rel="noopener" class="project-link">
           Play game
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
-
-        <div class="media">
-          <a href="../pawspawns.jpg" target="_blank"><img src="../pawspawns.jpg" alt="Paws vs Pawns logo" loading="lazy"></a>
-        </div>
       </article>
 
       <article class="project">
         <h3>❗ Quiz Me!</h3>
+
+        <div class="media">
+          <a class="lead" href="../quiz-me-gdc.webp" target="_blank"><img class="photo" src="../quiz-me-gdc.webp" alt="Quiz Me booth at the 2019 Game Developers Conference" loading="lazy"></a>
+        </div>
+
         <p>Quiz Me! was a 1st party voice-forward trivia skill powered by Alexa's own Knowledge Graph. Players could test their knowledge across thousands of dynamically generated and engaging categories.</p>
         <p class="meta">Alexa Skill · Featured at the 2019 Game Developers Conference</p>
 
-        <div class="media">
-          <a href="../quiz-me-gdc.webp" target="_blank"><img src="../quiz-me-gdc.webp" alt="Quiz Me booth at the 2019 Game Developers Conference" loading="lazy"></a>
-        </div>
-
         <blockquote class="review">
+          <p>"I really like this game. We play it on long drives … I love movie trivia and <strong>there are lots of variations in this game</strong> — as well as a lot of other types of categories."</p>
           <cite>⭐⭐⭐⭐⭐ Five-star review</cite>
-          <p>"I really like this game. We play it on long drives — so traffic doesn't bother us as much. I love movie trivia and there are lots of variations in this game — as well as a lot of other types of categories. I only wish there was a list of the available categories somewhere. I figured out that I can say: 'Quiz me on movies from the 1930's' (or 40's, 50's, etc.) or you can ask to be quizzed on movies from specific directors or specific actors. In a couple of instances the skill had some issues: a few times it read the questions in Spanish instead of English and sometimes it says it does not have a category that I know it has because I've played it already. But the problems are not often."</p>
         </blockquote>
       </article>
 
       <article class="project">
         <h3>📙 The Dictionary Game</h3>
-        <p>The popular parlor game, now playable online with friends! Trick your friends into guessing your made-up definition of an obscure word, and see if you can spot the correct definition among the crowd. Players use their phones, tablets, or laptops to play together in real time. At least 2 players are required, but the more players join, the harder and crazier it becomes to get your friends to vote for your definition.</p>
+
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/8q2OCrgh48s" title="The Dictionary Game trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <p>The classic parlor game, now online. Invent a fake definition for an obscure word, then try to spot the real one among your friends' guesses. Two or more players.</p>
         <p class="meta">Entrant in the 2018 International Game Festival</p>
         <a href="https://dictionarygame.vercel.app/" target="_blank" rel="noopener" class="project-link">
           Play game
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
-
-        <div class="video">
-          <iframe src="https://www.youtube.com/embed/8q2OCrgh48s" title="The Dictionary Game trailer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
       </article>
     </section>
 
@@ -473,7 +482,6 @@
 
       <article class="project">
         <h3>♟️ Atomic Andy (me) vs GM Hikaru Nakamura</h3>
-        <p>Who will win!? Spoiler: it's not me.</p>
 
         <a class="video video-thumb" href="https://www.youtube.com/watch?v=RBC2AIFXFH8" target="_blank" rel="noopener" data-embed="https://www.youtube.com/embed/RBC2AIFXFH8?autoplay=1" data-title="Hikaru Invokes The Wrath of The Great Carlini" aria-label="Play video: Atomic Andy vs GM Hikaru Nakamura">
           <img src="../chess-thumbnail.webp" alt="" loading="lazy">
@@ -481,6 +489,8 @@
             <svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
           </span>
         </a>
+
+        <p>Who will win!? Spoiler: it's not me.</p>
       </article>
     </section>
 
