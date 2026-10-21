@@ -238,6 +238,73 @@
       border: 0;
     }
 
+
+    /* Video thumbnail with play button */
+    .video-thumb {
+      display: block;
+      cursor: pointer;
+    }
+
+    .video-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0) 55%);
+      pointer-events: none;
+    }
+
+    .video-thumb .play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 4.25rem;
+      height: 4.25rem;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .video-thumb .play svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-left: 0.2rem;
+      fill: #1c1917;
+    }
+
+    .video-thumb:hover img,
+    .video-thumb:focus-visible img {
+      transform: scale(1.03);
+      filter: brightness(0.92);
+    }
+
+    .video-thumb:hover .play,
+    .video-thumb:focus-visible .play {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .video-thumb:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .video-thumb img, .video-thumb .play { transition: none; }
+    }
+
     /* Review */
     .review {
       margin-top: 1.25rem;
@@ -408,9 +475,12 @@
         <h3>♟️ Atomic Andy (me) vs GM Hikaru Nakamura</h3>
         <p>Who will win!? Spoiler: it's not me.</p>
 
-        <div class="video">
-          <iframe src="https://www.youtube.com/embed/RBC2AIFXFH8" title="Hikaru Invokes The Wrath of The Great Carlini" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+        <a class="video video-thumb" href="https://www.youtube.com/watch?v=RBC2AIFXFH8" target="_blank" rel="noopener" data-embed="https://www.youtube.com/embed/RBC2AIFXFH8?autoplay=1" data-title="Hikaru Invokes The Wrath of The Great Carlini" aria-label="Play video: Atomic Andy vs GM Hikaru Nakamura">
+          <img src="../chess-thumbnail.webp" alt="" loading="lazy">
+          <span class="play" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+          </span>
+        </a>
       </article>
     </section>
 
@@ -422,5 +492,22 @@
       </nav>
     </footer>
   </main>
+  <script>
+    // Swap the thumbnail for the YouTube player on click; the link still works without JS.
+    document.querySelectorAll('.video-thumb').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var f = document.createElement('iframe');
+        f.src = el.dataset.embed;
+        f.title = el.dataset.title;
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        f.allowFullscreen = true;
+        var box = document.createElement('div');
+        box.className = 'video';
+        box.appendChild(f);
+        el.replaceWith(box);
+      });
+    });
+  </script>
 </body>
 </html>
