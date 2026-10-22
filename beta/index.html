@@ -360,6 +360,13 @@
       margin-bottom: 0;
     }
 
+    @media (min-width: 640px) {
+      .featured {
+        grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+        gap: 1.75rem;
+      }
+    }
+
     .featured > div:last-child {
       text-align: center;
     }
