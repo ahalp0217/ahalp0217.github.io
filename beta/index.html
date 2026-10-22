@@ -361,8 +361,13 @@
       margin-bottom: 0;
     }
 
+    .featured > div:last-child {
+      text-align: center;
+    }
+
     .featured .note {
       display: flex;
+      justify-content: center;
       align-items: center;
       margin-bottom: 0.5rem;
       font-family: 'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
@@ -371,7 +376,6 @@
       line-height: 1;
       color: var(--accent);
       transform: rotate(-3deg);
-      transform-origin: left center;
     }
 
     .featured p {
@@ -605,7 +609,7 @@
             <p class="note" aria-hidden="true">
               That's me!
             </p>
-            <p>A few years ago</p>
+            <p>(a few years ago)</p>
           </div>
         </div>
       </article>
