@@ -373,6 +373,72 @@
       }
     }
 
+    /* Chess matchup: two sides of the table */
+    .project h3.matchup {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 1rem;
+      letter-spacing: 0;
+    }
+
+    .matchup .side {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas: "piece name" ". role";
+      column-gap: 0.625rem;
+      align-items: center;
+    }
+
+    .matchup .side--right {
+      grid-template-columns: 1fr auto;
+      grid-template-areas: "name piece" "role .";
+      text-align: right;
+    }
+
+    .matchup .piece {
+      grid-area: piece;
+      width: 0.875rem;
+      height: 0.875rem;
+      border-radius: 50%;
+      border: 2px solid var(--text);
+    }
+
+    .matchup .piece--light { background: var(--surface); }
+    .matchup .piece--dark { background: var(--text); }
+
+    .matchup .name {
+      grid-area: name;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    .matchup .role {
+      grid-area: role;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--subtle);
+    }
+
+    .matchup .vs {
+      display: grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--subtle);
+    }
+
     /* Review */
     .review {
       margin-top: 1.75rem;
@@ -420,6 +486,20 @@
     }
 
     @media (max-width: 520px) {
+      .matchup .name {
+        font-size: 1.0625rem;
+      }
+
+      .project h3.matchup {
+        gap: 0.5rem;
+      }
+
+      .matchup .vs {
+        width: 2.125rem;
+        height: 2.125rem;
+        font-size: 0.75rem;
+      }
+
       .project {
         padding: 2.25rem 0;
       }
@@ -574,7 +654,19 @@
       <h2 class="section-header">Chess</h2>
 
       <article class="project">
-        <h3>♟️ Atomic Andy (me) vs GM Hikaru Nakamura</h3>
+        <h3 class="matchup" aria-label="Atomic Andy (me) versus GM Hikaru Nakamura">
+          <span class="side">
+            <span class="piece piece--light" aria-hidden="true"></span>
+            <span class="name">Atomic Andy</span>
+            <span class="role">Me</span>
+          </span>
+          <span class="vs" aria-hidden="true">vs</span>
+          <span class="side side--right">
+            <span class="piece piece--dark" aria-hidden="true"></span>
+            <span class="name">Hikaru Nakamura</span>
+            <span class="role">Grandmaster</span>
+          </span>
+        </h3>
 
         <a class="video video-thumb" href="https://www.youtube.com/watch?v=RBC2AIFXFH8" target="_blank" rel="noopener" data-embed="https://www.youtube.com/embed/RBC2AIFXFH8?autoplay=1" data-title="Hikaru Invokes The Wrath of The Great Carlini" aria-label="Play video: Atomic Andy vs GM Hikaru Nakamura">
           <img src="../chess-thumbnail.webp" alt="" loading="lazy">
