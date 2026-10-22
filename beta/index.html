@@ -290,7 +290,7 @@
       pointer-events: none;
     }
 
-    /* Play button: a plain white circle */
+    /* Play button: chunky arcade key in the yellow of the pieces */
     .video-thumb .play {
       position: absolute;
       top: 50%;
@@ -298,20 +298,25 @@
       z-index: 1;
       display: grid;
       place-items: center;
-      width: 4.5rem;
-      height: 4.5rem;
-      transform: translate(-50%, -50%);
+      width: 5rem;
+      height: 5rem;
+      margin: -2.5rem 0 0 -2.5rem;
+      border: 4px solid #1c1917;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-      transition: transform 0.2s ease;
+      background: #ffc933;
+      box-shadow: 0 6px 0 #1c1917;
+      transition: transform 0.25s cubic-bezier(0.34, 1.8, 0.64, 1), box-shadow 0.25s ease;
     }
 
     .video-thumb .play svg {
-      width: 1.6rem;
-      height: 1.6rem;
+      width: 2.25rem;
+      height: 2.25rem;
       margin-left: 0.2rem;
       fill: #1c1917;
+      stroke: #1c1917;
+      stroke-width: 3;
+      stroke-linejoin: round;
+      transform: rotate(-6deg);
     }
 
     .video-thumb:hover img,
@@ -320,9 +325,16 @@
       filter: brightness(0.92);
     }
 
+    /* Hover: the key pops up; press: it sinks into its shadow */
     .video-thumb:hover .play,
     .video-thumb:focus-visible .play {
-      transform: translate(-50%, -50%) scale(1.08);
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 9px 0 #1c1917;
+    }
+
+    .video-thumb:active .play {
+      transform: translateY(5px);
+      box-shadow: 0 1px 0 #1c1917;
     }
 
     .video-thumb:focus-visible {
@@ -385,27 +397,28 @@
     .matchup .side {
       display: grid;
       grid-template-columns: auto 1fr;
-      grid-template-areas: "piece name" ". role";
+      grid-template-areas: "piece name" "piece role";
       column-gap: 0.625rem;
       align-items: center;
     }
 
     .matchup .side--right {
       grid-template-columns: 1fr auto;
-      grid-template-areas: "name piece" "role .";
+      grid-template-areas: "name piece" "role piece";
       text-align: right;
     }
 
     .matchup .piece {
       grid-area: piece;
-      width: 0.875rem;
-      height: 0.875rem;
-      border-radius: 50%;
-      border: 2px solid var(--text);
+      width: 1.75rem;
+      height: 1.75rem;
+      stroke: var(--text);
+      stroke-width: 1.5;
+      stroke-linejoin: round;
     }
 
-    .matchup .piece--light { background: var(--surface); }
-    .matchup .piece--dark { background: var(--text); }
+    .matchup .piece--light { fill: var(--surface); }
+    .matchup .piece--dark { fill: var(--text); }
 
     .matchup .name {
       grid-area: name;
@@ -486,8 +499,23 @@
     }
 
     @media (max-width: 520px) {
+      .matchup .side {
+        min-width: 0;
+        column-gap: 0.5rem;
+      }
+
       .matchup .name {
         font-size: 1.0625rem;
+      }
+
+      .matchup .role {
+        font-size: 0.6875rem;
+        letter-spacing: 0.04em;
+      }
+
+      .matchup .piece {
+        width: 1.375rem;
+        height: 1.375rem;
       }
 
       .project h3.matchup {
@@ -574,7 +602,7 @@
             <p class="note" aria-hidden="true">
               That's me!
             </p>
-            <p>A technologist shares how his role with Prime Video allows him to create innovative experiences.</p>
+            <p>A few years ago</p>
           </div>
         </div>
       </article>
@@ -656,22 +684,22 @@
       <article class="project">
         <h3 class="matchup" aria-label="Atomic Andy (me) versus GM Hikaru Nakamura">
           <span class="side">
-            <span class="piece piece--light" aria-hidden="true"></span>
+            <svg class="piece piece--light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3.2"/><rect x="8.5" y="10.6" width="7" height="1.8" rx="0.9"/><path d="M9.3 12.4h5.4c.3 2.2 1.2 4 2.6 5.6H6.7c1.4-1.6 2.3-3.4 2.6-5.6Z"/><rect x="5.5" y="17.9" width="13" height="2.6" rx="1.2"/></svg>
             <span class="name">Atomic Andy</span>
-            <span class="role">Me</span>
+            <span class="role">Me · White</span>
           </span>
           <span class="vs" aria-hidden="true">vs</span>
           <span class="side side--right">
-            <span class="piece piece--dark" aria-hidden="true"></span>
+            <svg class="piece piece--dark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3.2"/><rect x="8.5" y="10.6" width="7" height="1.8" rx="0.9"/><path d="M9.3 12.4h5.4c.3 2.2 1.2 4 2.6 5.6H6.7c1.4-1.6 2.3-3.4 2.6-5.6Z"/><rect x="5.5" y="17.9" width="13" height="2.6" rx="1.2"/></svg>
             <span class="name">Hikaru Nakamura</span>
-            <span class="role">Grandmaster</span>
+            <span class="role">Grandmaster · Black</span>
           </span>
         </h3>
 
         <a class="video video-thumb" href="https://www.youtube.com/watch?v=RBC2AIFXFH8" target="_blank" rel="noopener" data-embed="https://www.youtube.com/embed/RBC2AIFXFH8?autoplay=1" data-title="Hikaru Invokes The Wrath of The Great Carlini" aria-label="Play video: Atomic Andy vs GM Hikaru Nakamura">
           <img src="../chess-thumbnail.webp" alt="" loading="lazy">
           <span class="play" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M8.5 5.5v13l10.5-6.5Z"/></svg>
           </span>
         </a>
 
