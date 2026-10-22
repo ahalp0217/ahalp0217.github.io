@@ -455,6 +455,19 @@
       color: var(--subtle);
     }
 
+    /* Handwritten aside, same look as the "That's me!" note */
+    .project p.handwritten {
+      max-width: none;
+      font-family: 'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.1;
+      text-align: center;
+      text-wrap: balance;
+      color: var(--accent);
+      transform: rotate(-2deg);
+    }
+
     /* Review */
     .review {
       margin-top: 1.75rem;
@@ -712,7 +725,7 @@
           </span>
         </a>
 
-        <p>Who will win!? Spoiler: it's not me.</p>
+        <p class="handwritten">Who will win!? Spoiler: it's not me.</p>
       </article>
     </section>
 
