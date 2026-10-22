@@ -207,11 +207,21 @@
     }
 
     .links a {
+      padding-bottom: 0.125rem;
       color: var(--muted);
+      background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 2px;
+      transition: color 0.2s ease, background-size 0.25s ease;
     }
 
     .links a:hover {
       color: var(--text);
+      text-decoration: none;
+    }
+
+    /* Underline the section currently in view */
+    .links a.active {
+      color: var(--text);
+      background-size: 100% 2px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -846,6 +856,40 @@
         var e = entries[0];
         bar.classList.toggle('scrolled', !e.isIntersecting && e.boundingClientRect.top < 0);
       }, { threshold: 0 }).observe(photo);
+    })();
+
+    // Underline the nav link for the section currently in view.
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.links a'));
+      var items = links.map(function (a) {
+        return { link: a, section: document.querySelector(a.getAttribute('href')) };
+      }).filter(function (i) { return i.section; });
+      var bar = document.getElementById('topbar');
+      var ticking = false;
+
+      function update() {
+        ticking = false;
+        var line = (bar ? bar.offsetHeight : 0) + 96;
+        var current = null;
+        items.forEach(function (i) {
+          if (i.section.getBoundingClientRect().top <= line) current = i;
+        });
+        if (items.length && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+          current = items[items.length - 1];
+        }
+        items.forEach(function (i) {
+          var on = i === current;
+          i.link.classList.toggle('active', on);
+          if (on) i.link.setAttribute('aria-current', 'true');
+          else i.link.removeAttribute('aria-current');
+        });
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
     })();
 
     // Swap the thumbnail for the YouTube player on click; the link still works without JS.
