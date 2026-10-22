@@ -55,11 +55,16 @@
 
     body {
       font-family: 'Rubik', system-ui, sans-serif;
-      font-size: 1.0625rem;
-      line-height: 1.65;
+      font-size: 1rem;
+      line-height: 1.7;
       color: var(--text);
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    @media (min-width: 640px) {
+      body { font-size: 1.0625rem; }
     }
 
     img {
@@ -78,9 +83,9 @@
     }
 
     .container {
-      max-width: 760px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 4rem 1.25rem 2rem;
+      padding: clamp(2.5rem, 7vw, 5rem) 1.25rem 2.5rem;
     }
 
     /* Header */
@@ -88,44 +93,47 @@
       display: flex;
       align-items: center;
       gap: 1.25rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .hero img {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 4.75rem;
+      height: 4.75rem;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
     }
 
     .hero h1 {
-      font-size: 1.75rem;
+      font-size: clamp(1.625rem, 5.5vw, 2rem);
       font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
     }
 
     .hero p {
-      color: var(--muted);
+      color: var(--text);
       font-size: 1rem;
       line-height: 1.5;
     }
 
     .hero .edu {
+      margin-top: 0.125rem;
       color: var(--subtle);
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
     }
 
     .nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 0.5rem 1.75rem;
       padding-bottom: 1.25rem;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
       border-bottom: 1px solid var(--line);
-      font-size: 0.9375rem;
+      font-size: 1rem;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .nav a {
@@ -138,7 +146,7 @@
 
     /* Sections */
     .section {
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
       scroll-margin-top: 2rem;
     }
 
@@ -146,14 +154,14 @@
       font-size: 0.8125rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       color: var(--subtle);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     /* Projects */
     .project {
-      padding: 2rem 0;
+      padding: 3rem 0;
       border-top: 1px solid var(--line);
     }
 
@@ -163,29 +171,33 @@
     }
 
     .project h3 {
-      font-size: 1.25rem;
+      font-size: 1.375rem;
       font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 1rem;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.25rem;
+      text-wrap: balance;
     }
 
     .project p {
       color: var(--muted);
-      max-width: 65ch;
+      max-width: 62ch;
+      text-wrap: pretty;
     }
 
     .project .meta {
       font-size: 0.875rem;
+      line-height: 1.5;
       color: var(--subtle);
-      margin-top: 0.25rem;
+      margin-top: 0.5rem;
     }
 
     .project-link {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      margin-top: 0.75rem;
-      font-size: 0.9375rem;
+      margin-top: 1rem;
+      font-size: 1rem;
       font-weight: 500;
     }
 
@@ -198,8 +210,8 @@
     .media {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
+      gap: 0.875rem;
+      margin-bottom: 1.5rem;
     }
 
     .media a {
@@ -214,7 +226,7 @@
       width: 100%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
-      border-radius: 0.5rem;
+      border-radius: 0.75rem;
       border: 1px solid var(--line);
       background: var(--surface);
       transition: opacity 0.15s;
@@ -231,8 +243,8 @@
     .video {
       position: relative;
       aspect-ratio: 16 / 9;
-      margin-bottom: 1.25rem;
-      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 0.75rem;
       overflow: hidden;
       background: var(--line);
     }
@@ -360,8 +372,8 @@
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 1.25rem;
       align-items: center;
-      margin-top: 1.75rem;
-      padding-top: 1.5rem;
+      margin-top: 2.25rem;
+      padding-top: 2rem;
       border-top: 1px solid var(--line);
     }
 
@@ -380,6 +392,7 @@
 
     .featured p {
       font-size: 0.9375rem;
+      line-height: 1.6;
     }
 
     @media (max-width: 520px) {
@@ -390,14 +403,15 @@
 
     /* Review */
     .review {
-      margin-top: 1.25rem;
-      padding-left: 1rem;
+      margin-top: 1.75rem;
+      padding-left: 1.25rem;
       border-left: 3px solid var(--line);
-      max-width: 65ch;
+      max-width: 62ch;
     }
 
     .review p {
       font-size: 1.0625rem;
+      line-height: 1.7;
       font-style: italic;
       color: var(--muted);
     }
@@ -410,7 +424,7 @@
 
     .review cite {
       display: block;
-      margin-top: 0.5rem;
+      margin-top: 0.625rem;
       font-size: 0.875rem;
       font-style: normal;
       color: var(--subtle);
@@ -422,7 +436,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 1rem;
-      padding-top: 1.5rem;
+      padding-top: 1.75rem;
       border-top: 1px solid var(--line);
       font-size: 0.9375rem;
       color: var(--subtle);
@@ -434,8 +448,32 @@
     }
 
     @media (max-width: 520px) {
-      .container {
-        padding-top: 2.5rem;
+      .project {
+        padding: 2.25rem 0;
+      }
+
+      .section {
+        margin-bottom: 3.5rem;
+      }
+
+      .nav {
+        gap: 0.5rem 1.5rem;
+      }
+
+      .hero {
+        gap: 1rem;
+      }
+
+      .hero img {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .nav {
+        gap: 0.5rem 1.125rem;
+        font-size: 0.9375rem;
       }
     }
   </style>
@@ -455,7 +493,6 @@
       <a href="#experience">Experience</a>
       <a href="#sideprojects">Side Projects</a>
       <a href="#chess">Chess</a>
-      <a href="https://www.linkedin.com/in/ahalp0217/" target="_blank" rel="noopener">LinkedIn ↗</a>
     </nav>
 
     <!-- Experience -->
