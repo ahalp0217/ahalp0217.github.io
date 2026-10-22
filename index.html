@@ -123,30 +123,100 @@
       font-size: 0.875rem;
     }
 
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.75rem;
-      padding-bottom: 1.25rem;
-      margin-bottom: 3.5rem;
+    /* Sticky sub-nav: your photo slides into the first slot once the header scrolls away */
+    .container.head {
+      padding-bottom: 0;
+    }
+
+    .container.main {
+      padding-top: 3rem;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0.875rem 1.25rem;
       font-size: 1rem;
       font-weight: 500;
       white-space: nowrap;
     }
 
-    .nav a {
+    .to-top {
+      flex-shrink: 0;
+      display: block;
+      width: 0;
+      height: 2rem;
+      margin-right: 0;
+      overflow: hidden;
+      border-radius: 50%;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-1.25rem) scale(0.4);
+      transition: width 0.35s ease, margin-right 0.35s ease, opacity 0.25s ease,
+        transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1), visibility 0s linear 0.4s;
+    }
+
+    .to-top img {
+      width: 2rem;
+      height: 2rem;
+      max-width: none;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .topbar.scrolled .to-top {
+      width: 2rem;
+      margin-right: 1.25rem;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition-delay: 0s;
+    }
+
+    .to-top:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .links {
+      display: flex;
+      gap: 1.75rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .links a {
       color: var(--muted);
     }
 
-    .nav a:hover {
+    .links a:hover {
       color: var(--text);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .to-top { transition: none; }
     }
 
     /* Sections */
     .section {
       margin-bottom: 5rem;
-      scroll-margin-top: 2rem;
+      scroll-margin-top: 4.5rem;
     }
 
     .section-header {
@@ -222,30 +292,22 @@
       margin-bottom: 1.5rem;
     }
 
-    .media a {
-      display: block;
-    }
-
     .media .lead {
       grid-column: 1 / -1;
     }
 
     .media img {
+      display: block;
       width: 100%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 0.75rem;
       border: 1px solid var(--line);
       background: var(--surface);
-      transition: opacity 0.15s;
     }
 
     .media img.photo {
       aspect-ratio: 16 / 10;
-    }
-
-    .media a:hover img {
-      opacity: 0.88;
     }
 
     .video {
@@ -566,8 +628,8 @@
         margin-bottom: 3.5rem;
       }
 
-      .nav {
-        gap: 0.5rem 1.5rem;
+      .links {
+        gap: 1.5rem;
       }
 
       .hero {
@@ -581,15 +643,23 @@
     }
 
     @media (max-width: 360px) {
-      .nav {
-        gap: 0.5rem 1.125rem;
+      .topbar-inner {
+        padding-inline: 1rem;
         font-size: 0.9375rem;
+      }
+
+      .links {
+        gap: 1rem;
+      }
+
+      .topbar.scrolled .to-top {
+        margin-right: 0.875rem;
       }
     }
   </style>
 </head>
 <body>
-  <main class="container" id="top">
+  <div class="container head" id="top">
     <header class="hero">
       <img src="./profile.png" alt="Andrew Halpern">
       <div>
@@ -599,11 +669,20 @@
       </div>
     </header>
 
-    <nav class="nav">
-      <a href="#experience">Experience</a>
-      <a href="#sideprojects">Side Projects</a>
-      <a href="#chess">Chess</a>
-    </nav>
+  </div>
+
+  <nav class="topbar" id="topbar" aria-label="Sections">
+    <div class="topbar-inner">
+      <a class="to-top" href="#top" aria-label="Back to top"><img src="./profile.png" alt=""></a>
+      <div class="links">
+        <a href="#experience">Experience</a>
+        <a href="#sideprojects">Side Projects</a>
+        <a href="#chess">Chess</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container main">
 
     <!-- Experience -->
     <section id="experience" class="section">
@@ -613,9 +692,9 @@
         <h3>🧙 Prime Video <span class="dates">2019 – 2026</span></h3>
 
         <div class="media">
-          <a class="lead" href="./ringsofpower.jpg" target="_blank"><img src="./ringsofpower.jpg" alt="Rings of Power TV page" loading="lazy"></a>
-          <a href="./wheel-of-time.webp" target="_blank"><img src="./wheel-of-time.webp" alt="Wheel of Time Explore page" loading="lazy"></a>
-          <a href="./the-boys.webp" target="_blank"><img src="./the-boys.webp" alt="The Boys Explore page" loading="lazy"></a>
+          <img class="lead" src="./ringsofpower.jpg" alt="Rings of Power TV page" loading="lazy">
+          <img src="./wheel-of-time.webp" alt="Wheel of Time Explore page" loading="lazy">
+          <img src="./the-boys.webp" alt="The Boys Explore page" loading="lazy">
         </div>
 
         <p>I currently lead a team of design technologists building high-fidelity UI prototypes for the Prime Video TV, Mobile, and Web applications. I also prototyped and developed interactive maps, character cards, timelines, and shopping experiences for dozens of Prime Video titles including Wheel of Time, Making The Cut, and The Rings of Power.</p>
@@ -644,7 +723,7 @@
         <h3>🐈 Paws vs Pawns</h3>
 
         <div class="media">
-          <a class="lead" href="./pawspawns.jpg" target="_blank"><img class="photo" src="./pawspawns.jpg" alt="Paws vs Pawns title art" loading="lazy"></a>
+          <img class="lead photo" src="./pawspawns.jpg" alt="Paws vs Pawns title art" loading="lazy">
         </div>
 
         <p>Carefully navigating beneath towering enemy chess pieces, you'll play as Purrrnie the orange cat as you learn to solve unique chess puzzles that test your memory, patience, and your fear of heights.</p>
@@ -659,7 +738,7 @@
         <h3>❗ Quiz Me!</h3>
 
         <div class="media">
-          <a class="lead" href="./quiz-me-gdc.webp" target="_blank"><img class="photo" src="./quiz-me-gdc.webp" alt="Quiz Me booth at the 2019 Game Developers Conference" loading="lazy"></a>
+          <img class="lead photo" src="./quiz-me-gdc.webp" alt="Quiz Me booth at the 2019 Game Developers Conference" loading="lazy">
         </div>
 
         <p>Quiz Me! was a 1st party voice-forward trivia skill powered by Alexa's own Knowledge Graph. Players could test their knowledge across thousands of dynamically generated and engaging categories.</p>
@@ -753,6 +832,17 @@
     </footer>
   </main>
   <script>
+    // Show the photo in the sub-nav once the header photo has scrolled out of view.
+    (function () {
+      var bar = document.getElementById('topbar');
+      var photo = document.querySelector('.hero img');
+      if (!bar || !photo || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (entries) {
+        var e = entries[0];
+        bar.classList.toggle('scrolled', !e.isIntersecting && e.boundingClientRect.top < 0);
+      }, { threshold: 0 }).observe(photo);
+    })();
+
     // Swap the thumbnail for the YouTube player on click; the link still works without JS.
     document.querySelectorAll('.video-thumb').forEach(function (el) {
       el.addEventListener('click', function (e) {
