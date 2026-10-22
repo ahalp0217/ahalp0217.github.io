@@ -269,6 +269,7 @@
       pointer-events: none;
     }
 
+    /* The play button is a board square: checkered tile, cream disc, triangle */
     .video-thumb .play {
       position: absolute;
       top: 50%;
@@ -276,20 +277,55 @@
       z-index: 1;
       display: grid;
       place-items: center;
-      width: 4.25rem;
-      height: 4.25rem;
+      width: 5rem;
+      height: 5rem;
       transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-      transition: transform 0.2s ease, background 0.2s ease;
+      border: 3px solid #efe6d2;
+      border-radius: 0.9rem;
+      background: repeating-conic-gradient(#2a2420 0 25%, #efe6d2 0 50%) 0 0 / 1.25rem 1.25rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .video-thumb .play svg {
-      width: 1.75rem;
-      height: 1.75rem;
-      margin-left: 0.2rem;
-      fill: #1c1917;
+    .video-thumb .disc {
+      display: grid;
+      place-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: #efe6d2;
+      box-shadow: 0 0 0 3px #2a2420;
+    }
+
+    .video-thumb .disc svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-left: 0.12rem;
+      fill: #2a2420;
+    }
+
+    .video-thumb .label {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem 0.45rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(28, 25, 23, 0.82);
+      color: #efe6d2;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .video-thumb .label svg {
+      width: 1.15rem;
+      height: 1.15rem;
+      fill: #efe6d2;
+      transition: transform 0.3s ease;
     }
 
     .video-thumb:hover img,
@@ -298,9 +334,15 @@
       filter: brightness(0.92);
     }
 
+    /* Hover: the square hops like a knight, the pawn steps forward */
     .video-thumb:hover .play,
     .video-thumb:focus-visible .play {
-      transform: translate(-50%, -50%) scale(1.08);
+      transform: translate(-50%, -62%) rotate(-5deg) scale(1.06);
+    }
+
+    .video-thumb:hover .label svg,
+    .video-thumb:focus-visible .label svg {
+      transform: translateY(-3px);
     }
 
     .video-thumb:focus-visible {
@@ -309,7 +351,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .video-thumb img, .video-thumb .play { transition: none; }
+      .video-thumb img, .video-thumb .play, .video-thumb .label svg { transition: none; }
     }
 
     /* Review */
@@ -486,7 +528,11 @@
         <a class="video video-thumb" href="https://www.youtube.com/watch?v=RBC2AIFXFH8" target="_blank" rel="noopener" data-embed="https://www.youtube.com/embed/RBC2AIFXFH8?autoplay=1" data-title="Hikaru Invokes The Wrath of The Great Carlini" aria-label="Play video: Atomic Andy vs GM Hikaru Nakamura">
           <img src="../chess-thumbnail.webp" alt="" loading="lazy">
           <span class="play" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+            <span class="disc"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg></span>
+          </span>
+          <span class="label" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.2"/><rect x="8.5" y="10.6" width="7" height="1.8" rx="0.9"/><path d="M9.3 12.4h5.4c.3 2.2 1.2 4 2.6 5.6H6.7c1.4-1.6 2.3-3.4 2.6-5.6Z"/><rect x="5.5" y="17.9" width="13" height="2.6" rx="1.2"/></svg>
+            Watch the game
           </span>
         </a>
 
