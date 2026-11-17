@@ -329,6 +329,28 @@
       aspect-ratio: 16 / 10;
     }
 
+    .media.games {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.625rem;
+    }
+
+    .media.games img {
+      aspect-ratio: 16 / 10;
+      border-radius: 0.5rem;
+    }
+
+    .media.games img.lead {
+      aspect-ratio: 1200 / 630;
+      border-radius: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 540px) {
+      .media.games {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     .video {
       position: relative;
       aspect-ratio: 16 / 9;
@@ -777,6 +799,29 @@
       <h2 class="section-header">Side Projects</h2>
 
       <article class="project">
+        <h3>🥛 Milkman Games</h3>
+
+        <div class="media games">
+          <img class="lead" src="./milkman/milkman-games.webp" alt="Milkman Games — Your daily pint for fun" loading="lazy">
+          <img src="./milkman/cozy-catio.webp" alt="Cozy Catio screenshot" loading="lazy">
+          <img src="./milkman/free-pour.webp" alt="Free Pour screenshot" loading="lazy">
+          <img src="./milkman/bounce-up.webp" alt="Bounce Up screenshot" loading="lazy">
+          <img src="./milkman/one-two-chess.webp" alt="One Two Chess screenshot" loading="lazy">
+          <img src="./milkman/rhythm-knights.webp" alt="Rhythm Knights screenshot" loading="lazy">
+          <img src="./milkman/sushi-slots.webp" alt="Sushi Slots screenshot" loading="lazy">
+          <img src="./milkman/spoon-race.webp" alt="Spoon Race screenshot" loading="lazy">
+          <img src="./milkman/the-works.webp" alt="The Works screenshot" loading="lazy">
+        </div>
+
+        <p>Your daily pint for fun. Milkman Games is a growing collection of pint-sized browser games — quick, bite-sized play sessions you can pick up in a minute, from cozy cat cafés and latte art to rhythm battles and sushi slots.</p>
+        <p class="meta">Side project · 50+ games and counting</p>
+        <a href="https://milkman.games" target="_blank" rel="noopener" class="project-link">
+          Play games
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+      <article class="project">
         <h3>📙 The Dictionary Game</h3>
 
         <a class="video video-thumb" href="https://www.youtube.com/watch?v=8q2OCrgh48s" target="_blank" rel="noopener" data-embed="https://www.youtube.com/embed/8q2OCrgh48s?autoplay=1" data-title="The Dictionary Game trailer" aria-label="Play video: The Dictionary Game trailer">
@@ -803,14 +848,6 @@
         </a>
       </article>
 
-      <article class="project">
-        <h3>🟦 Squares</h3>
-        <p>Click as fast as you can!</p>
-        <a href="https://ecstatic-jepsen-c4bf8e.netlify.app/" target="_blank" rel="noopener" class="project-link">
-          Play game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-        </a>
-      </article>
     </section>
 
     <!-- Chess -->
