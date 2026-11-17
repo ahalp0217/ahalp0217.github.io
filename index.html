@@ -329,25 +329,40 @@
       aspect-ratio: 16 / 10;
     }
 
-    .media.games {
+    .media.games .strip {
+      grid-column: 1 / -1;
+      min-width: 0;
+      display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0.625rem;
     }
 
-    .media.games img {
+    .media.games .strip img {
       aspect-ratio: 16 / 10;
       border-radius: 0.5rem;
     }
 
     .media.games img.lead {
       aspect-ratio: 1200 / 630;
-      border-radius: 0.75rem;
-      margin-bottom: 0.25rem;
     }
 
+    /* Mobile: screenshots become a swipeable carousel */
     @media (max-width: 540px) {
-      .media.games {
-        grid-template-columns: repeat(2, 1fr);
+      .media.games .strip {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .media.games .strip::-webkit-scrollbar {
+        display: none;
+      }
+
+      .media.games .strip img {
+        flex: 0 0 80%;
+        min-width: 0;
+        scroll-snap-align: start;
       }
     }
 
@@ -803,14 +818,16 @@
 
         <div class="media games">
           <img class="lead" src="./milkman/milkman-games.webp" alt="Milkman Games — Your daily pint for fun" loading="lazy">
-          <img src="./milkman/cozy-catio.webp" alt="Cozy Catio screenshot" loading="lazy">
-          <img src="./milkman/parking-attendant.webp" alt="Parking Attendant screenshot" loading="lazy">
-          <img src="./milkman/glow-roll.webp" alt="Glow Roll screenshot" loading="lazy">
-          <img src="./milkman/one-two-chess.webp" alt="One Two Chess screenshot" loading="lazy">
-          <img src="./milkman/rhythm-knights.webp" alt="Rhythm Knights screenshot" loading="lazy">
-          <img src="./milkman/sushi-slots.webp" alt="Sushi Slots screenshot" loading="lazy">
-          <img src="./milkman/just-a-dot.webp" alt="Just a Dot screenshot" loading="lazy">
-          <img src="./milkman/letter-day.webp" alt="Letter Day screenshot" loading="lazy">
+          <div class="strip">
+            <img src="./milkman/cozy-catio.webp" alt="Cozy Catio screenshot" loading="lazy">
+            <img src="./milkman/parking-attendant.webp" alt="Parking Attendant screenshot" loading="lazy">
+            <img src="./milkman/glow-roll.webp" alt="Glow Roll screenshot" loading="lazy">
+            <img src="./milkman/one-two-chess.webp" alt="One Two Chess screenshot" loading="lazy">
+            <img src="./milkman/rhythm-knights.webp" alt="Rhythm Knights screenshot" loading="lazy">
+            <img src="./milkman/sushi-slots.webp" alt="Sushi Slots screenshot" loading="lazy">
+            <img src="./milkman/just-a-dot.webp" alt="Just a Dot screenshot" loading="lazy">
+            <img src="./milkman/letter-day.webp" alt="Letter Day screenshot" loading="lazy">
+          </div>
         </div>
 
         <p>I co-created Milkman Games as a home for pint-sized games. It’s where we playtest new ideas and share them with friends and family.</p>
